@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>누리링크 · 유아교육 5종 서류 통합 연동</title>
+<meta name="description" content="연간계획안·주간계획안·알림장·관찰일지·상담일지가 하나의 데이터로 이어지는 유아교육기관 서류 통합 시스템">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%235B7F6B'/%3E%3Cpath d='M20 40c8-2 12-8 14-16 6 4 10 10 10 16' stroke='%23FAF9F6' stroke-width='3.4' fill='none' stroke-linecap='round'/%3E%3Ccircle cx='32' cy='44' r='3' fill='%23C98A2E'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap">
+<link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+<div class="app">
+  <aside class="sidebar">
+    <a class="brand" href="#/home">
+      <span class="brand-mark">
+        <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M7 21c5-1.4 8-5 9-10 4 2.6 6.6 6.4 6.6 10.4" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><circle cx="16" cy="23.5" r="2" fill="currentColor"/></svg>
+      </span>
+      <span class="brand-text">
+        <strong>누리링크</strong>
+        <small>NURI LINK</small>
+      </span>
+    </a>
+
+    <div class="class-card">
+      <span class="class-dot"></span>
+      <div>
+        <strong id="class-name">햇살반</strong>
+        <span id="class-meta">만 5세 · 담임 오수민</span>
+      </div>
+    </div>
+
+    <nav class="nav" id="nav" aria-label="주요 화면">
+      <p class="nav-label">문서 흐름</p>
+      <a class="nav-item" href="#/home" data-route="home"><span class="nav-ic">◉</span>통합 대시보드</a>
+      <a class="nav-item" href="#/annual" data-route="annual"><span class="nav-num">1</span>연간계획안</a>
+      <a class="nav-item" href="#/weekly" data-route="weekly"><span class="nav-num">2</span>주간계획안</a>
+      <a class="nav-item" href="#/notice" data-route="notice"><span class="nav-num">3</span>알림장</a>
+      <a class="nav-item" href="#/observe" data-route="observe"><span class="nav-num">4</span>관찰일지</a>
+      <a class="nav-item" href="#/counsel" data-route="counsel"><span class="nav-num">5</span>상담일지</a>
+      <p class="nav-label">시스템</p>
+      <a class="nav-item" href="#/mapping" data-route="mapping"><span class="nav-ic">⌘</span>데이터 매핑 구조</a>
+    </nav>
+
+    <div class="sidebar-foot">
+      <div class="storage-note">
+        <span class="storage-dot"></span>
+        <p>모든 기록은 이 브라우저에<br>자동 저장됩니다</p>
+      </div>
+      <button class="btn btn-ghost btn-block" data-action="reset">샘플 데이터 초기화</button>
+    </div>
+  </aside>
+
+  <main class="main">
+    <header class="topbar">
+      <div class="topbar-left">
+        <p class="crumb" id="crumb">통합 대시보드</p>
+        <h1 id="page-title">햇살반 문서 흐름</h1>
+        <p class="page-sub" id="page-sub"></p>
+      </div>
+      <div class="topbar-right">
+        <button class="week-chip" data-action="go" data-route="weekly" id="week-chip" title="이번 주 주간계획안 열기">
+          <span class="week-chip-label">이번 주</span>
+          <span id="week-chip-text">11월 4주</span>
+        </button>
+      </div>
+    </header>
+
+    <section id="view" class="view" aria-live="polite"></section>
+
+    <footer class="foot">
+      <span>누리링크 · 유아교육 5종 서류 통합 연동 시스템</span>
+      <span id="foot-stamp"></span>
+    </footer>
+  </main>
+</div>
+
+<div class="toast-wrap" id="toast-wrap" aria-live="polite"></div>
+<div id="overlay" class="overlay" hidden></div>
+
+<script src="assets/data.js"></script>
+<script src="assets/app.js"></script>
+</body>
+</html>
