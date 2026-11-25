@@ -218,8 +218,8 @@
       '자연탐구': '궁금한 것을 직접 찾아 비교해 보는'
     };
     var homeIdea = {
-      '신체운동·건강': '가족과 함께 걷기·뛰기 같은 몸놀이',
-      '의사소통': '오늘 있었던 일을 그림일기로 이야기하기',
+      '신체운동·건강': '가족과 걷기·뛰기 같은 몸놀이',
+      '의사소통': '오늘 있었던 일을 그림일기로 이야기 나누기',
       '사회관계': '가족과 함께하는 간단한 역할놀이',
       '예술경험': '집에 있는 재료로 자유롭게 만들어 보기',
       '자연탐구': '산책길에서 자연물을 관찰하고 이름 붙여 보기'
@@ -231,7 +231,7 @@
       items.forEach(function (i) { if (acts.indexOf(i.activity) < 0) acts.push(i.activity); });
       var text;
       if (!items.length) {
-        text = a.id + ' 영역의 관찰 기록은 아직 없습니다. 다음 주 ' + a.short + ' 영역이 드러나는 놀이에서 이 아이의 모습을 한 번 관찰해 보세요.';
+        text = a.id + ' 영역의 관찰 기록은 아직 없습니다. 다음 주 ' + a.id + ' 영역이 드러나는 놀이에서 이 아이의 모습을 한 번 관찰해 보세요.';
       } else {
         text = acts.slice(0, 3).join(', ') + ' 놀이에서 ' + items.length + '건의 관찰이 기록되었습니다. '
           + a.id + ' 영역에서 ' + strength[a.id] + ' 모습이 보입니다.';
@@ -253,7 +253,7 @@
         points.push(top.id + ' 영역에서 기록이 가장 많이 쌓였습니다(' + top.count + '건). ' + strength[top.id] + ' 모습을 구체적으로 칭찬해 주시면 좋겠습니다.');
       }
       if (low.count <= 1) {
-        points.push(low.id + ' 영역은 기록이 적습니다. 가정에서 ' + homeIdea[low.id] + '를 함께해 보시고, 다음 상담 때 아이의 반응을 들려주세요.');
+        points.push(low.id + ' 영역은 기록이 적습니다. 가정에서 ' + homeIdea[low.id] + '를 해 보시고, 다음 상담 때 아이의 반응을 들려주세요.');
       }
       if (obs.length >= 3) {
         points.push('관찰일지 ' + obs.length + '건이 쌓여 발달 흐름을 함께 볼 수 있습니다. 최근 기록은 ' + fmtDate(obs[0].date) + '의 ‘' + obs[0].activity + '’ 관찰입니다.');
@@ -445,7 +445,7 @@
       + '<button class="btn btn-ghost btn-sm" data-action="go" data-route="mapping">연결 Key 보기 →</button></div>'
       + '<div class="flow">' + flow + '</div>'
       + '<div class="grid g2" style="margin-top:26px">'
-      + '<div class="card today-card"><div class="spread"><span class="today-title">이번 주 놀이 활동</span>'
+      + '<div class="card today-card"><div class="spread"><span class="today-title">오늘의 놀이 활동</span>'
       + '<span class="pill pill-line">' + p.month + '월 ' + p.week + '주</span></div>' + todayActs
       + '<button class="btn btn-outline btn-sm" data-action="go" data-route="weekly" style="align-self:flex-start">주간계획안에서 전체 보기</button></div>'
       + '<div class="card card-pad"><div class="spread" style="margin-bottom:6px"><span class="today-title">최근 기록</span>'
@@ -598,7 +598,7 @@
       + '<span class="hint">' + fmtDate(n.date) + ' · ' + esc(state.meta.class.name) + '</span></div>'
       + '<div class="field"><label>인사말</label><textarea id="n-opening" rows="2">' + esc(n.opening) + '</textarea></div>'
       + '<div class="field"><label>이번 주 놀이 안내 (주간계획안에서 자동 변환)</label>'
-      + '<textarea id="n-guide" rows="8">' + esc((n.guide || []).join('\n\n')) + '</textarea>'
+      + '<textarea id="n-guide" rows="10">' + esc((n.guide || []).join('\n\n')) + '</textarea>'
       + '<p class="hint">줄을 고치면 오른쪽 학부모 미리보기에 바로 반영됩니다.</p></div>'
       + '<div class="field"><label>가정 연계 안내</label><div class="row">'
       + (n.homeLink || []).map(function (h) { return '<span class="pill pill-line">' + esc(h) + '</span>'; }).join('')
@@ -726,7 +726,7 @@
       return '<div class="dev-card"><div class="dev-top"><span class="tag a-' + s.slug + '">' + esc(s.id) + '</span>'
         + '<span class="row" style="gap:8px"><span class="dev-meter">' + meter + '</span><span class="hint">' + s.count + '건</span></span></div>'
         + '<p>' + esc(s.text) + '</p>'
-        + (s.evidence ? '<p class="evidence">“' + esc(String(s.evidence).slice(0, 72)) + (String(s.evidence).length > 72 ? '…' : '') + '”</p>' : '')
+        + (s.evidence ? '<p class="evidence">“' + esc(String(s.evidence).replace(/[“”]/g, '‘').slice(0, 72)) + (String(s.evidence).length > 72 ? '…' : '') + '”</p>' : '')
         + '</div>';
     }).join('');
 
