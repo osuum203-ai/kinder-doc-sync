@@ -38,6 +38,16 @@
 - 정적 사이트(HTML/CSS/Vanilla JS), 빌드 도구 없음 → GitHub Pages로 배포
 - 데이터: 브라우저 `localStorage` (`nurilink.v1`)
 
+## 배포 방식
+
+- `main` 브랜치가 원본이고, GitHub Pages는 `gh-pages` 브랜치의 루트(`/`)를 바라보고 있습니다.
+- 파일을 고친 뒤에는 `main`과 `gh-pages` 두 브랜치를 함께 갱신해야 사이트에 반영됩니다.
+  ```bash
+  git push origin main
+  git push origin main:gh-pages
+  ```
+- GitHub 웹에서 파일을 직접 고치고 싶다면 저장소 **Settings → Pages → Build and deployment → Branch**를 `main` / `/(root)`로 바꿔 두면 `main`만 고쳐도 자동 배포됩니다.
+
 ## 로컬에서 열기
 
 ```bash

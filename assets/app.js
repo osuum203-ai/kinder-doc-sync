@@ -218,11 +218,11 @@
       '자연탐구': '궁금한 것을 직접 찾아 비교해 보는'
     };
     var homeIdea = {
-      '신체운동·건강': '가족과 걷기·뛰기 같은 몸놀이',
-      '의사소통': '오늘 있었던 일을 그림일기로 이야기 나누기',
-      '사회관계': '가족과 함께하는 간단한 역할놀이',
-      '예술경험': '집에 있는 재료로 자유롭게 만들어 보기',
-      '자연탐구': '산책길에서 자연물을 관찰하고 이름 붙여 보기'
+      '신체운동·건강': '가족과 함께 걷기·뛰기 같은 몸놀이를 해 보시면 좋겠습니다.',
+      '의사소통': '오늘 있었던 일을 그림일기로 이야기 나눠 보시면 좋겠습니다.',
+      '사회관계': '가족과 함께하는 간단한 역할놀이를 해 보시면 좋겠습니다.',
+      '예술경험': '집에 있는 재료로 자유롭게 만들어 보시면 좋겠습니다.',
+      '자연탐구': '산책길에서 자연물을 관찰하고 이름 붙여 보시면 좋겠습니다.'
     };
 
     var summaries = AREAS.map(function (a) {
@@ -253,7 +253,7 @@
         points.push(top.id + ' 영역에서 기록이 가장 많이 쌓였습니다(' + top.count + '건). ' + strength[top.id] + ' 모습을 구체적으로 칭찬해 주시면 좋겠습니다.');
       }
       if (low.count <= 1) {
-        points.push(low.id + ' 영역은 기록이 적습니다. 가정에서 ' + homeIdea[low.id] + '를 해 보시고, 다음 상담 때 아이의 반응을 들려주세요.');
+        points.push(low.id + ' 영역은 기록이 적습니다. 가정에서 ' + homeIdea[low.id] + ' 다음 상담 때 아이의 반응을 들려주세요.');
       }
       if (obs.length >= 3) {
         points.push('관찰일지 ' + obs.length + '건이 쌓여 발달 흐름을 함께 볼 수 있습니다. 최근 기록은 ' + fmtDate(obs[0].date) + '의 ‘' + obs[0].activity + '’ 관찰입니다.');
@@ -726,7 +726,7 @@
       return '<div class="dev-card"><div class="dev-top"><span class="tag a-' + s.slug + '">' + esc(s.id) + '</span>'
         + '<span class="row" style="gap:8px"><span class="dev-meter">' + meter + '</span><span class="hint">' + s.count + '건</span></span></div>'
         + '<p>' + esc(s.text) + '</p>'
-        + (s.evidence ? '<p class="evidence">“' + esc(String(s.evidence).replace(/[“”]/g, '‘').slice(0, 72)) + (String(s.evidence).length > 72 ? '…' : '') + '”</p>' : '')
+        + (s.evidence ? '<p class="evidence">“' + esc(String(s.evidence).replace(/“/g, '‘').replace(/”/g, '’').slice(0, 72)) + (String(s.evidence).length > 72 ? '…' : '') + '”</p>' : '')
         + '</div>';
     }).join('');
 
